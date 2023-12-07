@@ -1,28 +1,34 @@
 -- Définition d'une structure matriciel
 -- Matrice.
 generic
-	type Nb_ligne is private;
-	type Nb_colonne is private;
+	Nb_ligne: Integer;
+	Nb_colonne:Integer;
 
 package Matrice is
 
-	type T_Matrice is limited private;
+	type T_Mat is private;
 
-	-- Initialiser une Matrice composé de la même valeur
-	procedure Initialise(Mat : out T_matrice, Valeur : float) with
-    Post => Mat(i,j) = Valeur;
+-- Initialiser une Matrice composé de la même valeur
+  procedure Initialiser(Mat : out T_mat; Valeur : float);
 
 
-	--Multiplication d'une matrice par un scalaire
-  procedure Multiplication_Vect_Mat(Vect : float, Mat : in/out T_mat) with 
-    Post => Mat(i,j) = Mat(i,j)'Old * Vect;
+--Multiplication d'une matrice par un scalaire
+  procedure Multiplication_Vect_Mat(Vect : float; Mat : in out T_mat); 
 
-  --Somme deux matrices 
-  procedure Somme_Mat(Resultat : out T_Mat, mat_d : in T_mat, mat_g : out T_mat) with 
-    Post => Resultat(i,j) = mat_g(i,j) + mat_d(i,j);
+--Somme deux matrices 
+  procedure Somme_Mat(Resultat : out T_Mat; mat_d : in T_mat; mat_g : in T_mat); 
 
+--Afficher la matrice
+    procedure Afficher_Mat(Mat : T_mat);
+    
+--Modifier une valeur de la matrice
+    procedure Modifier_Mat(Mat : in out T_mat; i : Integer;j : Integer; valeur : Float);
+
+--retourne la case i,j
+    function Valeur(Mat : in T_mat;i : Integer; j : Integer) return float;
+    
 private
 
-  type T_Matrice array(1..nb_ligne,1..nb_colonne) of float;
+  type T_mat is array(1..Nb_ligne,1..Nb_colonne) of float;
     
 end matrice;
