@@ -1,7 +1,7 @@
 with Ada.Command_Line;     use Ada.Command_Line;
 with Ada.strings.Unbounded; use Ada.Strings.Unbounded;
 
-procedure traiter_argument is
+procedure traiter_argument(alpha : out float; k : out integer; epsilon : out float; algo : out string; prefixe : out string)  is
   alpha : float := 0.85;
   k : Integer := 150;
   epsilon : float := 0.0;
