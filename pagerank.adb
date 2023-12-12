@@ -27,7 +27,7 @@ procedure PageRank is
     
     
     
-    procedure PR_Mat_Pleine(alpha: in Integer; epsilon: in Integer) is
+    procedure PR_Mat_Pleine(alpha: in Integer; epsilon: in Integer; G : out T_mat) is
         
         S:T_Matrice;
         H:T_Matrice;
@@ -39,9 +39,9 @@ procedure PageRank is
         --Déterminer la matrice G
     
         --Déterminer H
-        Initialise(H,0);
-        Initialise(P,0);
-        Initialise(Nb_Ref,0);
+        Initialise(H,0); -- package mat a importer taille( nb_noeud, nb_noeud )
+        Initialise(P,0); -- package mat a importer taille( nb_noeud, 1 )
+        Initialise(Nb_Ref,0); -- package matrice a importer de taille ( ? )
         
         for i in 2..Longueur_Graphe loop
             Nb_Ref(Graphe(i,1),1):=Nb_Ref(Graphe(i,1),1)+1;
@@ -67,18 +67,16 @@ procedure PageRank is
         end loop; 
         
         --Déterminer G 
-        Initialise(e,1);
-        Initialise(e_t,1);
+        Initialise(e_fois_e_t,1); -- taille (nb_noeud, nb_noeud);
         
-        Produit_Matriciel(e,e_t);
-        Multiplication
+      --  Produit_Matriciel(e,e_t); -- pas besoin, on a juste a initialiser une matrice de taille ( nb_noeud, nb_noeud ) de 1 
+                                  -- pas besoin de produit matriciel dans la création de G   
         
+        G  :=  somme_mat(multiplication_vect_mat(alpha,S),multiplication_vect_mat((1-alpha)/N,e_fois_e_t));
+
     
     
-    
-    
-    
-    end PR_Mat_Pleine;
+    end PR_Mat_Pleine; -- le calcul des poids je le fais dans un autre document mais tu peux continuer la création des fichier
     
 begin
     

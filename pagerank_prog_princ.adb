@@ -1,5 +1,6 @@
 with traiter_argument; use traiter_argument;
 with pagerank; use pagerank;
+with poids ; use poids;
 
 procedure page_rank is
   alpha : float;
@@ -13,7 +14,15 @@ procedure page_rank is
 
 
   --determiner G
-  PR_mat_pleine(G)
+  PR_mat_pleine(alpha,G);
+
+  --calcul des poids 
+  poids(k0,epsilon,poids);
+
+
 
 
   --
+
+
+end page_rank;
