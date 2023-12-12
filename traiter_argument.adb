@@ -8,7 +8,6 @@ procedure traiter_argument(alpha : out float; k : out integer; epsilon : out flo
   algo :string := "c"; -- par défault creuse mais pour la première partie on fera en pleine
   prefixe : string := "output";
   i : Integer := 1; 
-
   -- pas encore robuste
 begin 
   --boucle while afin de pouvoir faire des pas de 2 ou de 1 en fonction des cas
